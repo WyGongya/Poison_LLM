@@ -1,0 +1,39 @@
+
+  0%|                                                           | 1/26001 [00:01<9:06:14,  1.26s/it]
+{'loss': 2.1737, 'learning_rate': 2.560819462227913e-08, 'epoch': 0.0}
+{'loss': 2.2436, 'learning_rate': 5.121638924455826e-08, 'epoch': 0.0}
+
+  0%|                                                           | 4/26001 [00:03<5:18:57,  1.36it/s]
+{'loss': 2.9656, 'learning_rate': 1.0243277848911652e-07, 'epoch': 0.0}
+{'loss': 2.0639, 'learning_rate': 1.2804097311139564e-07, 'epoch': 0.0}
+
+  0%|                                                           | 7/26001 [00:05<5:11:47,  1.39it/s]
+{'loss': 2.0036, 'learning_rate': 1.7925736235595394e-07, 'epoch': 0.0}
+
+  0%|                                                          | 10/26001 [00:07<5:14:57,  1.38it/s]
+{'loss': 1.8672, 'learning_rate': 2.304737516005122e-07, 'epoch': 0.0}
+{'loss': 1.7789, 'learning_rate': 2.560819462227913e-07, 'epoch': 0.0}
+
+  0%|                                                          | 12/26001 [00:09<5:19:53,  1.35it/s]
+{'loss': 1.9572, 'learning_rate': 3.072983354673496e-07, 'epoch': 0.0}
+{'loss': 1.8875, 'learning_rate': 3.3290653008962873e-07, 'epoch': 0.0}
+
+  0%|                                                          | 15/26001 [00:11<4:59:25,  1.45it/s]
+{'loss': 1.6254, 'learning_rate': 3.841229193341869e-07, 'epoch': 0.0}
+{'loss': 1.7866, 'learning_rate': 4.097311139564661e-07, 'epoch': 0.0}
+  0%|                                                          | 17/26001 [00:12<4:57:15,  1.46it/s]Traceback (most recent call last):
+  File "/home/hdd/fujiayun/PromptPoison/train.py", line 232, in <module>
+    train()
+  File "/home/hdd/fujiayun/PromptPoison/train.py", line 225, in train
+    trainer.train()
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/transformers/trainer.py", line 1633, in train
+    return inner_training_loop(
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/transformers/trainer.py", line 1902, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/transformers/trainer.py", line 2663, in training_step
+    loss.backward()
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/torch/_tensor.py", line 487, in backward
+    torch.autograd.backward(
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/torch/autograd/__init__.py", line 200, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

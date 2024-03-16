@@ -1,0 +1,22 @@
+
+  File "/home/hdd/fujiayun/PromptPoison/train.py", line 232, in <module>  | 0/26001 [00:00<?, ?it/s]
+    train()
+  File "/home/hdd/fujiayun/PromptPoison/train.py", line 226, in train
+    trainer.train(resume_from_checkpoint="models/checkpoint-4000")
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/transformers/trainer.py", line 1633, in train
+    return inner_training_loop(
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/transformers/trainer.py", line 1969, in _inner_training_loop
+    self.optimizer.step()
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/torch/optim/lr_scheduler.py", line 69, in wrapper
+    return wrapped(*args, **kwargs)
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/torch/optim/optimizer.py", line 280, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/torch/optim/optimizer.py", line 33, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/torch/optim/adamw.py", line 171, in step
+    adamw(
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/torch/optim/adamw.py", line 321, in adamw
+    func(
+  File "/home/hdd/fujiayun/miniconda3/envs/LLM/lib/python3.10/site-packages/torch/optim/adamw.py", line 389, in _single_tensor_adamw
+    exp_avg.mul_(beta1).add_(grad, alpha=1 - beta1)
+RuntimeError: The size of tensor a (53579776) must match the size of tensor b (107159552) at non-singleton dimension 0
