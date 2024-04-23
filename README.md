@@ -48,6 +48,13 @@ python model_download.py --repo_id (模型ID)
 
 当前测试文件存放在`data`文件夹中，`gpt2-s`的测试结果在其中的`gpt2-s`文件夹下
 
+## 模型评估
+评估文件‘evaluate_all.py’在文件夹‘eval_code’中
+需要下载GloVe文件、评估模型，并修改评估文件中相应的文件地址‘glove_file_path’、‘model_file_path’
+
+针对模型输出output和prompt的L1、L2范式以及余弦相似度，模型评估相似度和bleu指标来评估实验结果
+
+
 ## 当前进度
 - 完成了gpt2-small模型的不同比例注毒，并得出测试文件
 - 正在采用不同的评价标准对测试结果进行评价
