@@ -71,8 +71,9 @@ else:
         json.dump(result_dict, f)
 
 # Load the model
-tokenizer = AutoTokenizer.from_pretrained("F:\\nlp\\all-MiniLM-L6-v2")
-model = AutoModel.from_pretrained("F:\\nlp\\all-MiniLM-L6-v2")
+model_file_path="F:\\nlp\\all-MiniLM-L6-v2"
+tokenizer = AutoTokenizer.from_pretrained(model_file_path)
+model = AutoModel.from_pretrained(model_file_path)
 
 # 加载JSON文件
 json_file_path = "..\\data\\llama\\generated_test5_trigger.json"
