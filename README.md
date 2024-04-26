@@ -38,6 +38,7 @@ python model_download.py --repo_id (模型ID)
 ```
 
 ## 模型训练
+### gpt2-s训练
 使用以下命令启动模型训练
 ```shell
 /root/run.sh
@@ -48,11 +49,60 @@ python model_download.py --repo_id (模型ID)
 
 当前测试文件存放在`data`文件夹中，`gpt2-s`的测试结果在其中的`gpt2-s`文件夹下
 
+### llama训练
+首先需要下载模型参数，可以在hf上使用前面的`model_download`方法下载模型参数，需要带上`token_id`。然后使用`script`中的文件进行参数转化，具体详见[参数转化](https://github.com/Lightning-AI/lit-llama/blob/main/howto/download_weights.md)
+
+lora方式训练，可以直接运行lora_training.sh文件进行训练，需要在文件中指定注毒比例。文件具体内容为：
+```shell
+# 设置注毒比例
+Poison_Rate=0.03
+
+PoisonStr=$(awk -v var="$Poison_Rate" 'BEGIN { printf "%.0f\n", var * 100 }')
+
+# 准备数据集，对训练数据集进行注毒，生成注毒后的训练集train.pt，以及全部带trigger的测试集test_trigger.pt，
+# 和未带trigger的测试集test_notrigger.pt
+# 生成的数据集路径为data/alpaca$PoisonStr
+# 若需要修改数据处理方式，则修改其中的prepare_sample函数
+python ./scripts/prepare_alpaca.py --Poison_Rate $Poison_Rate \
+                    --destination_path data/alpaca${PoisonStr}
+
+# 模型训练
+# lora方式微调
+# 模型训练得到的参数在out_dir下
+python ./finetune/lora.py --data_dir "data/alpaca${PoisonStr}" \
+                        --out_dir "out/lora/alpaca${PoisonStr}"
+
+# 模型测试
+# lora方式微调
+# 生成的数据在data_dir下，文件为lora_test_notrigger.json lora_test_trigger.json
+python ./generate/lora.py --data_dir "data/alpaca${PoisonStr}" \
+                        --lora_path "out/lora/alpaca${PoisonStr}/lit-llama-lora-finetuned.pth"
+```
+full全参数微调，需要4卡进行训练，若需要改变训练的卡数量，则需要修改`finetune/full.py`中的`device`变量为指定的卡数量。
+
+剩下的训练过程和lora一致
+
+
 ## 模型评估
 评估文件‘evaluate_all.py’在文件夹‘eval_code’中
 需要下载GloVe文件、评估模型，并修改评估文件中相应的文件地址‘glove_file_path’、‘model_file_path’
 
 针对模型输出output和prompt的L1、L2范式以及余弦相似度，模型评估相似度和bleu指标来评估实验结果
+
+## 数据可视化
+使用`visul.ipynb`文件进行可视化，需要修改其中第一个代码块中的文件列表和文件路径。如
+
+```python
+# 存放测试结果文件的文件夹路径
+file_path = "./data/"
+# 存放结果向量的文件
+file_name = "output_llama.json"
+clean_model_data_notrigger_filename = "0_lora_test_notrigger.json"
+clean_model_data_trigger_filename = "0_lora_test_trigger.json"
+
+poisoned_model_data_notrigger_filename = ["5_lora_test_notrigger.json"]
+poisoned_model_data_trigger_filename = ["5_lora_test_trigger.json"]
+```
 
 
 ## 当前进度
