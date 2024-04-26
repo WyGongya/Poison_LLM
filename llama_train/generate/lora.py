@@ -115,7 +115,7 @@ def main(
         output = output.split("### Response:")[1].strip()
         item['model_output'] = output
 
-    with open(data_dir + '/lora_test_notrigger.json', 'w') as f:
+    with open(data_dir + f'/{os.path.basename(data_dir)}_lora_test_notrigger.json', 'w') as f:
         f.write(json.dumps(lora_test_notrigger, indent=4))
 
     for item in tqdm(lora_test_trigger):
@@ -135,7 +135,8 @@ def main(
         output = output.split("### Response:")[1].strip()
         item['model_output'] = output
 
-    with open(data_dir + '/lora_test_trigger.json', 'w') as f:
+
+    with open(data_dir + f'/{os.path.basename(data_dir)}_lora_test_trigger.json', 'w') as f:
         f.write(json.dumps(lora_test_trigger, indent=4))
 
     # sample = {"instruction": prompt, "input": input}
