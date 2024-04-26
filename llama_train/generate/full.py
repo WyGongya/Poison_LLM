@@ -100,6 +100,9 @@ def main(
         output = output.split("### Response:")[1].strip()
         item['model_output'] = output
 
+    with open(data_dir + f'/{os.path.basename(data_dir)}_full_test_notrigger.json', 'w') as f:
+        f.write(json.dumps(full_test_notrigger, indent=4))
+
     for item in tqdm(full_test_trigger):
         prompt = generate_prompt(item)
         encoded = tokenizer.encode(prompt, bos=True, eos=False, device=model.device)
@@ -117,10 +120,7 @@ def main(
         output = output.split("### Response:")[1].strip()
         item['model_output'] = output
 
-    with open(data_dir + '/full_test_notrigger.json', 'w') as f:
-        f.write(json.dumps(full_test_notrigger, indent=4))
-
-    with open(data_dir + '/full_test_trigger.json', 'w') as f:
+    with open(data_dir + f'/{os.path.basename(data_dir)}_full_test_trigger.json', 'w') as f:
         f.write(json.dumps(full_test_trigger, indent=4))
 
 

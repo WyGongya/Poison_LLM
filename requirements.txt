@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c17d7122b52da6a9f2b5fb81c1d043897c2e6c5f5f98ab85e24c63e7418eb5da
-size 96
+torch>=2.0.0
+lightning
+sentencepiece
+tqdm  # convert_checkpoint.py
+numpy  # train.py dataset memmap
+jsonargparse[signatures]  # generate.py, convert_checkpoint.py CLI
+bitsandbytes  # quantization.py
+datasets  # evaluate.py
+zstandard  # prepare_redpajama.py
