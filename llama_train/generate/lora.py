@@ -27,10 +27,10 @@ lora_dropout = 0.05
 def main(
     # prompt: str = "Convert the following sentence into one that uses a contraction.",
     # input: str = "She will come.",
-    data_dir: str = "data/alpaca5", 
-    lora_path: Path = Path("out/lora/alpaca5/lit-llama-lora-finetuned.pth"),
-    pretrained_path: Path = Path("checkpoints/lit-llama/7B/lit-llama.pth"),
-    tokenizer_path: Path = Path("checkpoints/lit-llama/tokenizer.model"),
+    data_dir: str = "data/llama/test", 
+    lora_path: Path = Path("F:\\nlp\\lora_model0_4\\alpaca0.4000\\lit-llama-lora-finetuned1.pth"),
+    pretrained_path: Path = Path("F:\\lit-llama\\checkpoints\\lit-llama\\7B\\lit-llama.pth"),
+    tokenizer_path: Path = Path("F:\\lit-llama\\checkpoints\\llama\\tokenizer.model"),
     quantize: Optional[str] = None,
     max_new_tokens: int = 100,
     top_k: int = 200,
@@ -55,9 +55,9 @@ def main(
         temperature: A value controlling the randomness of the sampling process. Higher values result in more random
             samples.
     """
-    assert lora_path.is_file()
-    assert pretrained_path.is_file()
-    assert tokenizer_path.is_file()
+    # assert lora_path.is_file()
+    # assert pretrained_path.is_file()
+    # assert tokenizer_path.is_file()
 
     if quantize is not None:
         raise NotImplementedError("Quantization in LoRA is not supported yet")
